@@ -1,12 +1,13 @@
 <<Your Name Here>>
 HW1
 Written Questions
-( 9 8 * / 3 ) =
-( 9 - - 2 ) =
-- 99 =
-( 6 * ( 3 + ( 8 + 4 =
-( ( 3 * 7 ) / ( ( 8 * 2 ) + ( 3 / 8 ) ) )
+
 Q1. Stack Experiments
+( 9 8 * / 3 ) = 2.6666666666666665 and the ops stack is [*] and the vals stack is [9]
+( 9 - - 2 ) = 7.0 and the ops stack is [-] and the vals stack is []
+- 99 = 99.0 and the ops stack is [-] and the vals stack is []
+( 6 * ( 3 + ( 8 + 4 = 4.0 and the ops stack is [*,+,+] and the vals stack is [6.0,3.0,8.0]
+( ( 3 * 7 ) / ( ( 8 * 2 ) + ( 3 / 8 ) ) ) = 1.282442748091603 and the ops stack is [] and the vals stack is []
 
 Q3.1 Function f(n) that models # of array inspections for UnknownArraySolution
 
