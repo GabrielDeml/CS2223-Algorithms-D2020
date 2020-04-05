@@ -18,7 +18,37 @@ public class NestedArraySolution extends NestedArraySearch {
 	 */
 	@Override
 	public int[] locate(int target) {
-		// FIX ME: complete this method.
+		int n = this.length();
+		int lo = 0;
+		int hi = n - 1;
+		while (lo <= hi) {
+			int mid = (lo + hi) / 2;
+			int rc = inspect(mid, 0) - target;
+			if (rc < 0) {
+				lo = mid + 1;
+			} else if (rc > 0) {
+				hi = mid - 1;
+			} else {
+				return new int[]{mid, 0};
+			}
+		}
+		if (hi < 0) {
+			return null;
+		}
+		int row = hi;
+		int hi2 = hi;
+		int lo2 = 1;
+		while (lo2 <= hi2) {
+			int mid = (lo2 + hi2) / 2;
+			int rc = inspect(row, mid) - target;
+			if (rc < 0) {
+				lo2 = mid + 1;
+			} else if (rc > 0) {
+				hi2 = mid - 1;
+			} else {
+				return new int[]{row, mid};
+			}
+		}
 		return null;
 	}
 	

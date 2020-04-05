@@ -20,9 +20,8 @@ public class RowOrderedArraySolution extends RowOrderedArraySearch {
      */
     @Override
     public int[] locate(int target) {
-        // FIX ME: complete this method. Currently this causes an exception to be thrown
-
         int n = this.length();
+        int numberTriangles = 1 + ((n - 1) / 3);
         int lo = 0;
         int hi = n - 1;
         while (lo <= hi) {
@@ -57,10 +56,63 @@ public class RowOrderedArraySolution extends RowOrderedArraySearch {
     }
 
     /**
+     * I got tired of trying to treat this problem as a nested triangle so this function just unraps it.
+     * It is not the most effencent, but it works.
+     *
+     * @param h the height of the array
+     * @return an array that contains the real x and y locations of the array
+     */
+    public static int[][] unrap(int h) {
+//       Init the return array
+        int numOfTriangles = (int) (1 + Math.floor((h - 1) / 3));
+        int totalNodes = ((h + 1) * h) / 2;
+        System.out.println(totalNodes);
+        int[][] out = new int[totalNodes][2];
+//       Find the number of triangles
+
+//       Init the tmp height
+        int tmpTriangleHeight = h;
+//       Init the start x and start y
+        int tmpX = 0;
+        int startX = 0;
+        int startY = 0;
+//       For all of the triangles that we have
+        for (int tri = 0; tri < numOfTriangles; tri++) {
+//            First for the first row
+            for (int j = 0; j < tmpTriangleHeight; j++) {
+//                Put the first row in
+                int x = j + startX;
+                int y = j + startY;
+                out[tmpX][0] = x;
+                out[tmpX++][1] = y;
+            }
+            for (int j = 1; j < tmpTriangleHeight; j++) {
+                int x = tmpTriangleHeight - j -1;
+                int y = tmpTriangleHeight - 1;
+                out[tmpX][0] = x;
+                out[tmpX++][1] = y;
+            }
+            for (int j = 0; j < tmpTriangleHeight -1; j++) {
+                out[tmpX][0] = tmpTriangleHeight - 1;
+                out[tmpX++][1] = tmpTriangleHeight - tri;
+            }
+            startX++;
+            startY = startY + 2;
+        }
+        return out;
+    }
+
+    /**
      * Be sure that you call your class constructor. Do not modify this method.
      */
+//    TODO: Make main static again
     public static void main(String args[]) {
-        int[][] ar = RowOrderedArraySearch.create(13);
-        new RowOrderedArraySolution(ar).trial();
+//        int[][] ar = RowOrderedArraySearch.create(13);
+//        new RowOrderedArraySolution(ar).trial();
+        int[][] test = unrap(4);
+        for (int i = 0; i < test.length; i++) {
+
+            System.out.print("(" + test[i][0] + " " + test[i][1] + ") ");
+        }
     }
 }
