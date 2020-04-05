@@ -36,6 +36,9 @@ public class RowOrderedArraySolution extends RowOrderedArraySearch {
                 return new int[]{mid, 0};
             }
         }
+        if (hi < 0) {
+            return null;
+        }
         int row = hi;
         int hi2 = hi;
         int lo2 = 1;
