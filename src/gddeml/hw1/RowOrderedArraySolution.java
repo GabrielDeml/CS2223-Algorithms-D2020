@@ -62,44 +62,85 @@ public class RowOrderedArraySolution extends RowOrderedArraySearch {
      * @param h the height of the array
      * @return an array that contains the real x and y locations of the array
      */
-    public static int[][] unrap(int h) {
-//       Init the return array
+//    public static int[][] unrap(int h) {
+////       Init the return array
+//        int numOfTriangles = (int) (1 + Math.floor((h - 1) / 3));
+//        int totalNodes = ((h + 1) * h) / 2;
+//        System.out.println(totalNodes);
+//        int[][] out = new int[totalNodes][2];
+////       Find the number of triangles
+//
+////       Init the tmp height
+//        int tmpTriangleHeight = h;
+////       Init the start x and start y
+//        int tmpX = 0;
+//        int startX = 0;
+//        int startY = 0;
+////       For all of the triangles that we have
+//        for (int tri = 0; tri < numOfTriangles; tri++) {
+////            First for the first row
+//            for (int j = 0; j < tmpTriangleHeight; j++) {
+////                Put the first row in
+//                int x = j + startX;
+//                int y = j + startY;
+//                out[tmpX][0] = x;
+//                out[tmpX++][1] = y;
+//            }
+//            for (int j = 1; j < tmpTriangleHeight - 1; j++) {
+//                int x = tmpTriangleHeight - j ;
+//                int y = tmpTriangleHeight - 1;
+//                out[tmpX][0] = x;
+//                out[tmpX++][1] = y;
+//            }
+//            for (int j = 1; j < tmpTriangleHeight  ; j++) {
+//                int y = tmpTriangleHeight - j;
+//                int x = tri;
+//                out[tmpX][0] = x;
+//                out[tmpX++][1] = y;
+//            }
+//            tmpX--;
+//            startX++;
+//            startY = startY + 2;
+//            tmpTriangleHeight = tmpTriangleHeight - 3;
+//        }
+//        return out;
+//    }
+    public static int[] unrap(int h, int value) {
         int numOfTriangles = (int) (1 + Math.floor((h - 1) / 3));
         int totalNodes = ((h + 1) * h) / 2;
-        System.out.println(totalNodes);
-        int[][] out = new int[totalNodes][2];
-//       Find the number of triangles
-
-//       Init the tmp height
-        int tmpTriangleHeight = h;
-//       Init the start x and start y
-        int tmpX = 0;
-        int startX = 0;
-        int startY = 0;
-//       For all of the triangles that we have
-        for (int tri = 0; tri < numOfTriangles; tri++) {
-//            First for the first row
-            for (int j = 0; j < tmpTriangleHeight; j++) {
-//                Put the first row in
-                int x = j + startX;
-                int y = j + startY;
-                out[tmpX][0] = x;
-                out[tmpX++][1] = y;
-            }
-            for (int j = 1; j < tmpTriangleHeight; j++) {
-                int x = tmpTriangleHeight - j -1;
-                int y = tmpTriangleHeight - 1;
-                out[tmpX][0] = x;
-                out[tmpX++][1] = y;
-            }
-            for (int j = 0; j < tmpTriangleHeight -1; j++) {
-                out[tmpX][0] = tmpTriangleHeight - 1;
-                out[tmpX++][1] = tmpTriangleHeight - tri;
-            }
-            startX++;
-            startY = startY + 2;
+        if(value > totalNodes){
+            return null;
         }
-        return out;
+        int nodesLeft = value;
+        int tmpHeight = h;
+        int tmp = 0;
+        int heightDelta = 0;
+        while (true) {
+            tmp = (3 * (tmpHeight - 1));
+            if (tmp < nodesLeft) {
+                nodesLeft = nodesLeft - tmp;
+                tmpHeight = tmpHeight - 3;
+                heightDelta++;
+            } else break;
+        }
+//        int nodesLeft = value - nodesLeft;
+//        int heightDelta = h - tmpHeight;
+        int startX = heightDelta;
+        int startY = heightDelta * 2;
+
+        int X = 0;
+        int Y = 0;
+        if (nodesLeft <= tmpHeight) {
+            X = startX + nodesLeft - 1;
+            Y = startY + nodesLeft - 1;
+        } else if (nodesLeft <= Math.floor(tmpHeight / Math.sqrt(2) + tmpHeight)) {
+            X = startX + (nodesLeft - tmpHeight -1);
+            Y = startY + tmpHeight -1;
+        } else {
+            X = startX;
+            Y = startY + (int) (nodesLeft - Math.floor(tmpHeight / Math.sqrt(2) + tmpHeight));
+        }
+        return new int[]{X, Y};
     }
 
     /**
@@ -109,10 +150,11 @@ public class RowOrderedArraySolution extends RowOrderedArraySearch {
     public static void main(String args[]) {
 //        int[][] ar = RowOrderedArraySearch.create(13);
 //        new RowOrderedArraySolution(ar).trial();
-        int[][] test = unrap(4);
-        for (int i = 0; i < test.length; i++) {
-
-            System.out.print("(" + test[i][0] + " " + test[i][1] + ") ");
-        }
+        int[] test = unrap(7, 28);
+        System.out.println(test[0] + " " + test[1]);
+//        for (int i = 0; i < test.length; i++) {
+//
+//            System.out.print("(" + test[i][0] + " " + test[i][1] + ") ");
+//        }
     }
 }
