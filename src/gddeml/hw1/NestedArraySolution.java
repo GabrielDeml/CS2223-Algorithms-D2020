@@ -20,14 +20,8 @@ public class NestedArraySolution extends NestedArraySearch {
      */
     @Override
     public int[] locate(int target) {
-//		System.out.println("Zero, zero :" + inspect(1, 0));
-        System.out.println("target: " + target + " length: " + this.length());
         int nOrig = this.length();
         int n = ((nOrig + 1) * nOrig) / 2;
-//        if (target > n) {
-//            System.out.println("target was too big");
-//            return null;
-//        }
         if (target <= 0) {
             System.out.println("target was too small");
         }
@@ -47,17 +41,15 @@ public class NestedArraySolution extends NestedArraySearch {
             } else if (rc > 0) {
                 hi = mid - 1;
             } else {
-            	System.out.println("Found point at: " + XY[1] + " " + XY[0]);
                 return new int[]{XY[1], XY[0]};
             }
         }
-        System.out.println("we did not find the target");
         return null;
     }
 
     /**
      * @param h     is the size of the square
-     * @param value is the value we are look
+     * @param value is the value we are converting
      * @return
      */
     public static int[] unwrap(int h, int value) {
@@ -65,9 +57,6 @@ public class NestedArraySolution extends NestedArraySearch {
         if (value > totalNodes || value == 0) {
             return null;
         }
-//        if (value == 0) {
-//            return new int[]{0, 0};
-//        }
         int nodesLeft = value;
         int tmpHeight = h;
         int numberOfNodesInTri = 0;
@@ -103,23 +92,6 @@ public class NestedArraySolution extends NestedArraySearch {
      */
     public static void main(String args[]) {
         int[][] ar = NestedArraySearch.create(13);
-//        int[][] ar = NestedArraySearch.create(4);
 		new NestedArraySolution(ar).trial();
-//		new NestedArraySolution(ar).locate(10);
-//        for (int i = 0; i < ar.length; i++) {
-//            for (int j = 0; j < ar[i].length; j++) {
-//                System.out.print(ar[i][j] + " ");
-//            }
-//            System.out.println();
-//        }
-
-//        for (int i = 0; i <= 21; i++) {
-//            int[] test = unwrap(6, i);
-//            if (test != null) {
-//                System.out.println(i + " = (" + test[0] + " " + test[1] + ") ");
-////                System.out.println(test[1]);
-//            }
-//        }
-
     }
 }
