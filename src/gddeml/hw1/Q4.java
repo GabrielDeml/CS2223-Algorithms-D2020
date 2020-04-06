@@ -38,7 +38,6 @@ public class Q4 {
                 stack.push(val - 2);
             }
         }
-
         return result;
     }
 
@@ -56,8 +55,16 @@ public class Q4 {
         while (!stack.isEmpty()) {
             long a = stack.pop();
             long b = stack.pop();
-
-            // YOU HAVE WORK TO DO HERE...
+            if (a > b) {
+                a = a - b;
+            } else {
+                b = b - a;
+            }
+            stack.push(b);
+            stack.push(a);
+            if (a ==  b) {
+                return a;
+            }
         }
 
         // should never get here
