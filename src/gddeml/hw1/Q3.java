@@ -12,12 +12,14 @@ public class Q3 {
     static long f(int n) {
         System.out.println("N is: " + n);
         double x = ((0.25 * n) - (0.125 * Math.pow(n, 2)) - (0.5 * Math.pow(n, 3)) + (0.125 * Math.pow(n, 4)) + (0.25 * Math.pow(n, 5)));
-        return (long) x;
+        // Convert to long and return
+        return Math.round(x);
     }
 
     static long g(int n) {
         double x = (1.75 * n) + (0.875 * Math.pow(n, 2)) - (1 * Math.pow(n, 3)) + (0.125 * Math.pow(n, 4)) + (0.25 * Math.pow(n, 5));
-        return (long) x;
+        // Convert to long and return
+        return Math.round(x);
     }
 
     public static void main(String[] args) {
