@@ -105,20 +105,20 @@ public class RowOrderedArraySolution extends RowOrderedArraySearch {
 //        }
 //        return out;
 //    }
-    public static int[] unrap(int h, int value) {
-        int numOfTriangles = (int) (1 + Math.floor((h - 1) / 3));
+    public static int[] unwrap(int h, int value) {
+//        int numOfTriangles = (int) (1 + Math.floor((h - 1) / 3));
         int totalNodes = ((h + 1) * h) / 2;
-        if(value > totalNodes){
+        if (value > totalNodes || value == 0) {
             return null;
         }
         int nodesLeft = value;
         int tmpHeight = h;
-        int tmp = 0;
+        int numberOfNodesInTri = 0;
         int heightDelta = 0;
         while (true) {
-            tmp = (3 * (tmpHeight - 1));
-            if (tmp < nodesLeft) {
-                nodesLeft = nodesLeft - tmp;
+            numberOfNodesInTri = (3 * (tmpHeight - 1));
+            if (numberOfNodesInTri < nodesLeft && nodesLeft != 1) {
+                nodesLeft = nodesLeft - numberOfNodesInTri;
                 tmpHeight = tmpHeight - 3;
                 heightDelta++;
             } else break;
@@ -130,15 +130,17 @@ public class RowOrderedArraySolution extends RowOrderedArraySearch {
 
         int X = 0;
         int Y = 0;
+//        int tmpNum2 = (int) Math.round(tmpHeight / Math.sqrt(2));
+//        int tmpNum = tmpNum2 + tmpHeight ;
         if (nodesLeft <= tmpHeight) {
             X = startX + nodesLeft - 1;
             Y = startY + nodesLeft - 1;
-        } else if (nodesLeft <= Math.floor(tmpHeight / Math.sqrt(2) + tmpHeight)) {
-            X = startX + (nodesLeft - tmpHeight -1);
-            Y = startY + tmpHeight -1;
+        } else if (nodesLeft <= (2 * tmpHeight) - 1) {
+            X = startX + (tmpHeight - (nodesLeft - tmpHeight)) - 1;
+            Y = startY + tmpHeight - 1;
         } else {
             X = startX;
-            Y = startY + (int) (nodesLeft - Math.floor(tmpHeight / Math.sqrt(2) + tmpHeight));
+            Y = startY + tmpHeight - (nodesLeft - (tmpHeight + (tmpHeight - 1))) - 1;
         }
         return new int[]{X, Y};
     }
@@ -150,11 +152,13 @@ public class RowOrderedArraySolution extends RowOrderedArraySearch {
     public static void main(String args[]) {
 //        int[][] ar = RowOrderedArraySearch.create(13);
 //        new RowOrderedArraySolution(ar).trial();
-        int[] test = unrap(7, 28);
-        System.out.println(test[0] + " " + test[1]);
-//        for (int i = 0; i < test.length; i++) {
-//
-//            System.out.print("(" + test[i][0] + " " + test[i][1] + ") ");
-//        }
+//        int[] test2 = unwrap(4, 9);
+
+        for (int i = 0; i <= 28; i++) {
+            int[] test = unwrap(7, i);
+            if (test != null) {
+                System.out.println(i + " = (" + test[0] + " " + test[1] + ") ");
+            }
+        }
     }
 }
