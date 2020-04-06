@@ -72,7 +72,6 @@ public class DiagonalArraySolution extends DiagonalArraySearch {
                 return new int[]{y, x};
             }
         }
-        System.out.println("Hell I am just saying something");
         return null;
     }
 
