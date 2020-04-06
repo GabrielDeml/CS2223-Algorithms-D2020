@@ -17,7 +17,7 @@ public class Q3 {
     }
 
     static long g(int n) {
-        double x = (1.75 * n) + (0.875 * Math.pow(n, 2)) - (1 * Math.pow(n, 3)) + (0.125 * Math.pow(n, 4)) + (0.25 * Math.pow(n, 5));
+        double x = (1.75 * n) + (0.875 * Math.pow(n, 2)) - Math.pow(n, 3) + (0.125 * Math.pow(n, 4)) + (0.25 * Math.pow(n, 5));
         // Convert to long and return
         return Math.round(x);
     }

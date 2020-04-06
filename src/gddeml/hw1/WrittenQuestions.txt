@@ -10,8 +10,10 @@ Q1. Stack Experiments
 ( ( 3 * 7 ) / ( ( 8 * 2 ) + ( 3 / 8 ) ) ) = 1.282442748091603 and the ops stack is [] and the vals stack is []
 
 Q3.1 Function f(n) that models # of array inspections for UnknownArraySolution
+    ((0.25 * n) - (0.125 * Math.pow(n, 2)) - (0.5 * Math.pow(n, 3)) + (0.125 * Math.pow(n, 4)) + (0.25 * Math.pow(n, 5)))
 
-Q3.2 Function g(n) that models # of array inspections for ImprovedUnknownArraySolution 
+Q3.2 Function g(n) that models # of array inspections for ImprovedUnknownArraySolution
+    (1.75 * n) + (0.875 * Math.pow(n, 2)) - Math.pow(n, 3) + (0.125 * Math.pow(n, 4)) + (0.25 * Math.pow(n, 5))
 
 Bonus Questions
 ---------------
@@ -23,7 +25,34 @@ Q2.2.1
 
 Q2.3.1
 
-Q2.3.2 
+Q2.3.2
 
-Q4.3  
+This prints the x and y values of the biggest number in a n dimensional NestedArray
+   public class Main {
+
+       public static void main(String[] args) {
+           int n = 2;
+           int x = 0;
+           int y = 0;
+           boolean first = false;
+   	for(int i = 0; i < n; i++) {
+   	    if(i % 3 == 0  && y !=0){
+               x++;
+               y++;
+               first = true;
+           }else if (first) {
+               y++;
+               first = false;
+           }
+           if(y == 0){
+               first = true;
+           }
+       }
+           System.out.println("X is: " + x + " Y is: " + y);
+       }
+   }
+
+
+Q4.3
+    The ratio converges to 1.5
 
