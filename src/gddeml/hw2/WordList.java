@@ -61,9 +61,11 @@ public class WordList {
     public boolean add(String elt) {
         Node selectedNode = root;
         Node nextNode;
+        String nodeWord;
         while (true) {
             nextNode = selectedNode.getNext();
-            if (elt == selectedNode.getWord()) {
+            nodeWord = selectedNode.getWord();
+            if (nodeWord != null && elt.equals(nodeWord)) {
                 return false;
             } else if (nextNode == null) {
                 selectedNode.setNext(new Node(elt));
@@ -97,11 +99,13 @@ public class WordList {
 //        Init previous node
         Node previousNode = selectedNode;
 //        While while true
+        String nodeWord;
         while (true) {
 //            Get the next node
             nextNode = selectedNode.getNext();
+            nodeWord = selectedNode.getWord();
 //            If this node contains the word
-            if (selectedNode.getWord() == elt) {
+            if (nodeWord != null && nodeWord.equals(elt)) {
 //                Set the next node to the previous
                 previousNode.setNext(nextNode);
 //                Set the list size
@@ -129,11 +133,13 @@ public class WordList {
 //        Set next node as next node
         Node nextNode;
 //        While while true
+        String nodeWord;
         while (true) {
 //            Get the next node
             nextNode = selectedNode.getNext();
+            nodeWord = selectedNode.getWord();
 //            If this node contains the word
-            if (selectedNode.getWord() == elt) {
+            if (nodeWord != null && nodeWord.equals(elt)) {
 //                Set the next node to the previous
                 return true;
             } else if (nextNode == null) {

@@ -63,7 +63,6 @@ public class Q1 {
                 chapter = i;
             }
         }
-
         System.out.println(String.format("The chapter with the fewest number of unique words is %d with a total of %s", chapter, minUnique));
     }
 
@@ -71,9 +70,14 @@ public class Q1 {
      * Complete this implementation.
      */
     static void totalUniqueWords() throws java.io.IOException {
-        int totalUnique = 0;
-
-        System.out.println(String.format("There are a total of %d unique words in the book.", totalUnique));
+        WordList wl = new WordList();
+        for (int i = 1; i < 46; i++) {
+            TaleOfTwoCitiesExtractor totce = new TaleOfTwoCitiesExtractor(i);
+            for (String s : totce) {
+                wl.add(s);
+            }
+        }
+        System.out.println(String.format("There are a total of %d unique words in the book.", wl.size()));
     }
 
     /**
