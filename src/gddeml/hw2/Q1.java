@@ -83,6 +83,7 @@ public class Q1 {
     /**
      * Complete this implementation.
      */
+//    TODO: Find the bug in here
     static void twoChaptersShareMostInCommon() throws java.io.IOException {
         int chapter1 = -1;
         int chapter2 = -1;
@@ -93,8 +94,8 @@ public class Q1 {
             for (String s : totce1) {
                 w1.add(s);
             }
-            int sharedLocal = 0;
-            for (int j = 1; j < 45 - i; j++) {
+            for (int j = 1 + i; j < 46; j++) {
+                int sharedLocal = 0;
                 TaleOfTwoCitiesExtractor totce2 = new TaleOfTwoCitiesExtractor(j);
                 for (String s : totce2) {
                     if (w1.contains(s)) {
