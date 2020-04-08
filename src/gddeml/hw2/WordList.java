@@ -169,7 +169,7 @@ public class WordList {
             }
 //            If we are at the end
             if (nextNode == null) {
-                System.out.println("Returning: " + returnString.toString());
+                System.out.println(returnString.toString());
                 return returnString.toString();
             }
 //            Set the selected node
@@ -209,5 +209,11 @@ public class WordList {
         validate(true, wl.remove("test"));
         validate("that", wl.elements());       // no trailing or pre comma.
         validate(true, wl.remove("that"));
+
+        WordList wlMine = new WordList();
+        wlMine.add("hello");
+        wlMine.add("hello");
+        validate("hello", wlMine.elements());
+        validate(1, wlMine.size());
     }
 }
