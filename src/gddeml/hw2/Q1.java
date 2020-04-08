@@ -87,7 +87,27 @@ public class Q1 {
         int chapter1 = -1;
         int chapter2 = -1;
         int maxShared = -1;
-
+        for (int i = 1; i < 46; i++) {
+            TaleOfTwoCitiesExtractor totce1 = new TaleOfTwoCitiesExtractor(i);
+            WordList w1 = new WordList();
+            for (String s : totce1) {
+                w1.add(s);
+            }
+            int sharedLocal = 0;
+            for (int j = 1; j < 45 - i; j++) {
+                TaleOfTwoCitiesExtractor totce2 = new TaleOfTwoCitiesExtractor(j);
+                for (String s : totce2) {
+                    if (w1.contains(s)) {
+                        sharedLocal++;
+                    }
+                }
+                if (sharedLocal > maxShared) {
+                    maxShared = sharedLocal;
+                    chapter1 = i;
+                    chapter2 = j;
+                }
+            }
+        }
         System.out.println(String.format("The two chapters that share the most words in common are chapters %d and %d with a total of %s words", chapter1, chapter2, maxShared));
     }
 
