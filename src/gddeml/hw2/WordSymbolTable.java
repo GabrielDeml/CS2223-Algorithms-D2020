@@ -119,17 +119,17 @@ public class WordSymbolTable {
      * Remove entire word from the word table.
      */
     public boolean remove(String elt) {
-        Node pointer = root.getNext();
+        Node pointer = root;
         Node previous = pointer;
         while (pointer != null) {
             if (pointer.getWord() == elt) {
                 previous.setNext(pointer.getNext());
-                return false;
+                return true;
             }
             previous = pointer;
             pointer = pointer.getNext();
         }
-        return true;
+        return false;
     }
 
     /**
@@ -204,7 +204,6 @@ public class WordSymbolTable {
             prefix = ";";
             pointer = pointer.getNext();
         }
-        System.out.println(sb.toString());
         return sb.toString();
 
     }
