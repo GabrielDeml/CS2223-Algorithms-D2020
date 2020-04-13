@@ -7,8 +7,6 @@ package gddeml.hw2;
  */
 public class WordSymbolTable {
     Node root = new Node(null, -1);
-//    TODO: Remove me
-    int itCounter = 0;
 
     /**
      * Leave this Node class as is. While you don't need to make changes to this class,
@@ -63,9 +61,6 @@ public class WordSymbolTable {
         while (pointerNext != null) {
             pointer = pointerNext;
             if (pointer.getWord() != null && pointer.getWord().equals(elt)) {
-                if (pointer.getWord().equals("it")) {
-                    System.out.println(++itCounter);
-                }
                 pointer.setCount(pointer.getCount() + 1);
                 return false;
             }
@@ -211,9 +206,7 @@ public class WordSymbolTable {
             pointer = pointer.getNext();
         }
         return sb.toString();
-
     }
-
 
     // you should not have to modify anything below. These are testing routines for you to check your work.
     // ----------------------------------------------------------------------------------------------------
