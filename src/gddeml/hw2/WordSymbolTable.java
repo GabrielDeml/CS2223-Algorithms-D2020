@@ -7,6 +7,8 @@ package gddeml.hw2;
  */
 public class WordSymbolTable {
     Node root = new Node(null, -1);
+//    TODO: Remove me
+    int itCounter = 0;
 
     /**
      * Leave this Node class as is. While you don't need to make changes to this class,
@@ -57,9 +59,13 @@ public class WordSymbolTable {
     public boolean increment(String elt) {
         Node pointer = root;
         Node pointerNext = pointer;
+
         while (pointerNext != null) {
             pointer = pointerNext;
-            if (pointer.getWord() == elt) {
+            if (pointer.getWord() != null && pointer.getWord().equals(elt)) {
+                if (pointer.getWord().equals("it")) {
+                    System.out.println(++itCounter);
+                }
                 pointer.setCount(pointer.getCount() + 1);
                 return false;
             }
@@ -80,7 +86,7 @@ public class WordSymbolTable {
     public boolean decrement(String elt) {
         Node pointer = root.getNext();
         while (pointer != null) {
-            if (pointer.getWord() == elt) {
+            if (pointer.getWord() != null && pointer.getWord().equals(elt)) {
                 pointer.setCount(pointer.getCount() - 1);
                 return true;
             }
@@ -122,7 +128,7 @@ public class WordSymbolTable {
         Node pointer = root;
         Node previous = pointer;
         while (pointer != null) {
-            if (pointer.getWord() == elt) {
+            if (pointer.getWord() != null && pointer.getWord().equals(elt)) {
                 previous.setNext(pointer.getNext());
                 return true;
             }
@@ -156,7 +162,7 @@ public class WordSymbolTable {
     public int count(String elt) {
         Node pointer = root.getNext();
         while (pointer != null) {
-            if (pointer.getWord() == elt) {
+            if (pointer.getWord() != null && pointer.getWord().equals(elt)) {
                 return pointer.getCount();
             }
             pointer = pointer.getNext();
@@ -251,5 +257,10 @@ public class WordSymbolTable {
         validate(true, wl.remove("test"));
         validate("(that,2)", wl.elements());       // no trailing or pre comma.
         validate(true, wl.remove("that"));
+
+        WordSymbolTable wlMine = new WordSymbolTable();
+        validate(true, wlMine.increment("test"));
+        validate(false, wlMine.increment("test"));
+        System.out.println(wlMine.elements());
     }
 }
