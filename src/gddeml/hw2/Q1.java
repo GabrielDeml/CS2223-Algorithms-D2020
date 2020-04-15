@@ -1,7 +1,5 @@
 package gddeml.hw2;
 
-import java.util.*;
-
 /**
  * For this question, you are to process the book "The Tale of Two Cities" as included in the repository.
  * <p>
@@ -83,29 +81,30 @@ public class Q1 {
     /**
      * Complete this implementation.
      */
-//    TODO: Find the bug in here
     static void twoChaptersShareMostInCommon() throws java.io.IOException {
         int chapter1 = -1;
         int chapter2 = -1;
         int maxShared = -1;
-        for (int i = 1; i < 46; i++) {
-            TaleOfTwoCitiesExtractor totce1 = new TaleOfTwoCitiesExtractor(i);
+        for (int totce1LoopCounter = 1; totce1LoopCounter < 46; totce1LoopCounter++) {
+            TaleOfTwoCitiesExtractor totce1 = new TaleOfTwoCitiesExtractor(totce1LoopCounter);
             WordList w1 = new WordList();
             for (String s : totce1) {
                 w1.add(s);
             }
-            for (int j = 1 + i; j < 46; j++) {
+            for (int totce2LoopCounter = 1 + totce1LoopCounter; totce2LoopCounter < 46; totce2LoopCounter++) {
+                WordList w2 = new WordList();
                 int sharedLocal = 0;
-                TaleOfTwoCitiesExtractor totce2 = new TaleOfTwoCitiesExtractor(j);
+                TaleOfTwoCitiesExtractor totce2 = new TaleOfTwoCitiesExtractor(totce2LoopCounter);
                 for (String s : totce2) {
-                    if (w1.contains(s)) {
+                    if (w1.contains(s) && !w2.contains(s)) {
+                        w2.add(s);
                         sharedLocal++;
                     }
                 }
                 if (sharedLocal > maxShared) {
                     maxShared = sharedLocal;
-                    chapter1 = i;
-                    chapter2 = j;
+                    chapter1 = totce1LoopCounter;
+                    chapter2 = totce2LoopCounter;
                 }
             }
         }
