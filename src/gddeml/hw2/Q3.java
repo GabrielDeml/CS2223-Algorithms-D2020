@@ -57,14 +57,20 @@ public class Q3 {
 	 * This is the method under review. Do not change this method.
 	 */
 	public static long proc(int[] a, int lo, int hi) {
+//		If low equals hi return low^2 and hi^2
 		if (lo == hi) { 
 			return power(a[lo], 2) + power(a[hi],2);
 		}
-		
+
+//		Find the mid point
 		int m = (lo + hi) / 2;
+//		Take low^2 + running this function on the lower half of the array
 		long total = power(lo, 2) + proc(a, lo, m);
+//		While hi is bigger than low
 		while (hi > lo) {
+//			Total = power a[lo]^2 + total
 			total += power(a[lo], 2);
+//			low + 2
 			lo+=2;
 		}
 		
@@ -76,7 +82,8 @@ public class Q3 {
 	 * of how many times Math.power() is called for an initial problem of size n.
 	 */
 	static long model(int n) {
-		// FIX ME
+		System.out.println("Should be: " + (n + Math.log(n) / Math.log(2) + 1));
+		System.out.println("Is: " + ((Math.log(n)) + (Math.log(n) * n) / 2));
 		return 0;
 	}
 	
@@ -88,20 +95,24 @@ public class Q3 {
 		// FIX ME
 		return 0;
 	}
-	
+
 	/** Launch the experiment. */
 	public static void main(String[] args) {
-		System.out.println("    N          Value");
-		for (int n = 2; n <= 4096; n *= 2) {
-			
-			int[] a = new int[n];
-			for (int i = 0; i < n; i++) { a[i] = i; }
-			
-			// initiate the request on an array of size n, containing values from 0 to n-1
-			// using indices of lo=0 and hi=n-1
-			long val = proc(a, 0, n-1);
-			
-			System.out.println(String.format("%6d\t%12d", n, val));
-		}
+//		System.out.println("    N          Value");
+//		for (int n = 2; n <= 4096; n *= 2) {
+//			int counter = 0;
+//			int[] a = new int[n];
+//			for (int i = 0; i < n; i++) { a[i] = i; }
+//
+//			// initiate the request on an array of size n, containing values from 0 to n-1
+//			// using indices of lo=0 and hi=n-1
+//
+////			A is a array that contains the number of number in order of n aka n = 4 a = [0,1,2,3]
+//
+//			long val = proc(a, 0, n-1);
+//
+//			System.out.println(String.format("%6d\t%12d", n, val));
+//		}
+		model(5);
 	}
 }
