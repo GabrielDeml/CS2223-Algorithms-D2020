@@ -33,6 +33,8 @@ public class Selection {
 
     FixedCapacityQueue<Integer> queue;
     Node root;
+    Node usedRoot;
+    int lengthOfList = 1;
 
     final int N;      /* Number of people. */
     final int k;      /* Delta to counting. */
@@ -49,6 +51,7 @@ public class Selection {
         for (int i = 1; i < N; i++) {
             pointer.setNext(new Node(i));
             pointer = pointer.getNext();
+            lengthOfList++;
         }
         queue = new FixedCapacityQueue<Integer>(N);
     }
@@ -121,16 +124,13 @@ public class Selection {
     Node getNode(int nodeID) {
         Node pointer = root;
         Node previous = root;
-        for (int i = 0; i < N; i++) {
-            if(pointer.getPerson() ==nodeID){
-                previous.setNext(pointer);
-                return pointer;
-            }
+        for (int i = 1; i <= nodeID % lengthOfList; i++) {
             previous = pointer;
             pointer = pointer.getNext();
         }
+        previous.setNext(pointer.getNext());
+        lengthOfList--;
         return pointer;
-
     }
 
     /**
