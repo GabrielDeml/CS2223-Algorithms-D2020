@@ -109,10 +109,10 @@ public class Selection {
      * in the order that they were removed. The very last value is the "last man standing" who claims the full lottery winnings.
      */
     FixedCapacityQueue<Integer> countOff() {
-        int pointer = 0;
+        Node lastKilledNode = root;
         for (int i = 1; i <= N; i++) {
-            pointer = (i * k);
-            queue.enqueue(getNode(pointer).getPerson());
+            lastKilledNode = getNode(3, lastKilledNode);
+            queue.enqueue(lastKilledNode.getPerson());
         }
         FixedCapacityQueue<Integer> reversed = new FixedCapacityQueue<Integer>(N);
         while (!queue.isEmpty()) {
@@ -121,29 +121,17 @@ public class Selection {
         return reversed;
     }
 
-    Node getNode(int nodeID) {
-//        Node pointer = root;
-//        Node previous = root;
-//        int i;
-//        for (i = 0; i < nodeID; i++) {
-//            if (pointer.getPerson() == -1) {
-//                i--;
-//                pointer = pointer.getNext();
-//            }
-//            previous = pointer;
-//            pointer = pointer.getNext();
-//            if (pointer == null) {
-//                pointer = root;
-//            }
-//        }
-////        If we remove the root node place the next node as root
-//        if (i == 0) {
-//            root = pointer.getNext();
-//        }
-////        previous.setNext(pointer.getNext());
-//        pointer.setPerson(-1);
-//        lengthOfList--;
-//        return pointer;
+    Node getNode(int killNode, Node node) {
+        Node previous = node;
+        for(int i = 0; i < killNode; i++) {
+            previous = node;
+            node = node.getNext();
+            if (node == null) {
+                node = root;
+            }
+        }
+        previous.setNext(node.getNext());
+        return node;
     }
 
     /**
