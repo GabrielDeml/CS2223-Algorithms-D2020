@@ -34,7 +34,7 @@ public class Selection {
     FixedCapacityQueue<Integer> queue;
     Node root;
     Node usedRoot;
-    int lengthOfList = 1;
+    int lengthOfList = 0;
 
     final int N;      /* Number of people. */
     final int k;      /* Delta to counting. */
@@ -122,20 +122,28 @@ public class Selection {
     }
 
     Node getNode(int nodeID) {
-        Node pointer = root;
-        Node previous = root;
-        int i;
-        for (i = 0; i < (nodeID % lengthOfList); i++) {
-            previous = pointer;
-            pointer = pointer.getNext();
-        }
-//        If we remove the root node place the next node as root
-        if (i == 0) {
-            root = pointer.getNext();
-        }
-        previous.setNext(pointer.getNext());
-        lengthOfList--;
-        return pointer;
+//        Node pointer = root;
+//        Node previous = root;
+//        int i;
+//        for (i = 0; i < nodeID; i++) {
+//            if (pointer.getPerson() == -1) {
+//                i--;
+//                pointer = pointer.getNext();
+//            }
+//            previous = pointer;
+//            pointer = pointer.getNext();
+//            if (pointer == null) {
+//                pointer = root;
+//            }
+//        }
+////        If we remove the root node place the next node as root
+//        if (i == 0) {
+//            root = pointer.getNext();
+//        }
+////        previous.setNext(pointer.getNext());
+//        pointer.setPerson(-1);
+//        lengthOfList--;
+//        return pointer;
     }
 
     /**
