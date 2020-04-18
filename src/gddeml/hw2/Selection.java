@@ -31,7 +31,7 @@ import algs.days.day05.FixedCapacityQueue;
 public class Selection {
 
 
-    FixedCapacityQueue<Integer> queue;
+    //    FixedCapacityQueue<Integer> queue;
     Node root;
     Node usedRoot;
     int lengthOfList = 0;
@@ -53,18 +53,19 @@ public class Selection {
             pointer = pointer.getNext();
             lengthOfList++;
         }
-        queue = new FixedCapacityQueue<Integer>(N);
+//        queue = new FixedCapacityQueue<Integer>(N);
     }
 
     /**
      * Use this node to form the linked list.
      */
     class Node {
+        boolean isAlive = true;
         int person;
         Node next;
 
         public Node(int person) {
-            this.person = person + 1;
+            this.person = person;
         }
 
         public void setNext(Node next) {
@@ -81,6 +82,45 @@ public class Selection {
 
         public Node getNext() {
             return next;
+        }
+
+        public boolean isAlive() {
+            return isAlive;
+        }
+
+        public void setAlive(boolean isAlive) {
+            this.isAlive = isAlive;
+        }
+    }
+
+    class myLinkedList {
+        Node head;
+        Node tail;
+        int count = 0;
+
+        public int removeHead() {
+            Node node = head;
+            head = head.getNext();
+            if(head == null){
+                this.tail = null;
+            }
+            count--;
+            return node.getPerson();
+        }
+
+        public void addTail(int i) {
+            Node node = new Node(i);
+            if (tail != null) {
+                this.tail.setNext(node);
+            }else{
+                head = node;
+            }
+            this.tail = node;
+            count++;
+        }
+
+        public int getCount() {
+            return this.count;
         }
     }
 
@@ -109,43 +149,17 @@ public class Selection {
      * in the order that they were removed. The very last value is the "last man standing" who claims the full lottery winnings.
      */
     FixedCapacityQueue<Integer> countOff() {
-        Node lastKilledNode = root;
-        for (int i = 1; i <= N; i++) {
-            int killNodeIndex = (((lastKilledNode.getPerson() - 1) + k) % (N - i + 1));
-            lastKilledNode = getNode(killNodeIndex);
-//            lastKilledNode = getNode(3, lastKilledNode);
-            queue.enqueue(lastKilledNode.getPerson());
+        FixedCapacityQueue<Integer> outQueue = new FixedCapacityQueue<Integer>(N);
+        myLinkedList queue = new myLinkedList();
+        for (int i = 1; i <= N; i++)
+            queue.addTail(i);
+        while (queue.getCount() != 0) {
+            for (int i = 0; i < k - 1; i++)
+                queue.addTail(queue.removeHead());
+            outQueue.enqueue(queue.removeHead());
         }
-        FixedCapacityQueue<Integer> reversed = new FixedCapacityQueue<Integer>(N);
-        while (!queue.isEmpty()) {
-            reversed.enqueue(queue.dequeue());
-        }
-        return reversed;
+        return outQueue;
     }
-
-//    Node getNode(int killNode, Node node) {
-//        Node previous = node;
-//        for(int i = 0; i < killNode; i++) {
-//            previous = node;
-//            node = node.getNext();
-//            if (node == null) {
-//                node = root;
-//            }
-//        }
-//        previous.setNext(node.getNext());
-//        return node;
-//    }
-    Node getNode(int index) {
-        Node pointer = root;
-        Node previous = root;
-        for(int i = 0; i < index; i++) {
-            previous = pointer;
-            pointer = pointer.getNext();
-        }
-        previous.setNext(pointer.getNext());
-        return pointer;
-    }
-
 
     /**
      * Launch the small examples to demonstrate success.
