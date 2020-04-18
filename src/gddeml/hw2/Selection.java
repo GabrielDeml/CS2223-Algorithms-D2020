@@ -111,7 +111,9 @@ public class Selection {
     FixedCapacityQueue<Integer> countOff() {
         Node lastKilledNode = root;
         for (int i = 1; i <= N; i++) {
-            lastKilledNode = getNode(3, lastKilledNode);
+            int killNodeIndex = (((lastKilledNode.getPerson() - 1) + k) % (N - i + 1));
+            lastKilledNode = getNode(killNodeIndex);
+//            lastKilledNode = getNode(3, lastKilledNode);
             queue.enqueue(lastKilledNode.getPerson());
         }
         FixedCapacityQueue<Integer> reversed = new FixedCapacityQueue<Integer>(N);
@@ -121,18 +123,29 @@ public class Selection {
         return reversed;
     }
 
-    Node getNode(int killNode, Node node) {
-        Node previous = node;
-        for(int i = 0; i < killNode; i++) {
-            previous = node;
-            node = node.getNext();
-            if (node == null) {
-                node = root;
-            }
+//    Node getNode(int killNode, Node node) {
+//        Node previous = node;
+//        for(int i = 0; i < killNode; i++) {
+//            previous = node;
+//            node = node.getNext();
+//            if (node == null) {
+//                node = root;
+//            }
+//        }
+//        previous.setNext(node.getNext());
+//        return node;
+//    }
+    Node getNode(int index) {
+        Node pointer = root;
+        Node previous = root;
+        for(int i = 0; i < index; i++) {
+            previous = pointer;
+            pointer = pointer.getNext();
         }
-        previous.setNext(node.getNext());
-        return node;
+        previous.setNext(pointer.getNext());
+        return pointer;
     }
+
 
     /**
      * Launch the small examples to demonstrate success.
