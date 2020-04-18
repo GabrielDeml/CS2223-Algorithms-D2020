@@ -48,7 +48,7 @@ public class Selection {
 
         root = new Node(1);
         Node pointer = root;
-        for (int i = 1; i < N; i++) {
+        for (int i = 2; i < N+1; i++) {
             pointer.setNext(new Node(i));
             pointer = pointer.getNext();
             lengthOfList++;
@@ -110,7 +110,7 @@ public class Selection {
      */
     FixedCapacityQueue<Integer> countOff() {
         int pointer = 0;
-        for (int i = 1; i < N+1; i++) {
+        for (int i = 1; i < N; i++) {
             pointer = (i * k) % N;
             queue.enqueue(getNode(pointer).getPerson());
         }
@@ -124,7 +124,7 @@ public class Selection {
     Node getNode(int nodeID) {
         Node pointer = root;
         Node previous = root;
-        for (int i = 1; i <= nodeID % lengthOfList; i++) {
+        for (int i = 0; i < (nodeID % lengthOfList) -1; i++) {
             previous = pointer;
             pointer = pointer.getNext();
         }

@@ -82,9 +82,7 @@ public class Q3 {
 	 * of how many times Math.power() is called for an initial problem of size n.
 	 */
 	static long model(int n) {
-		System.out.println("Should be: " + (n + Math.log(n) / Math.log(2) + 1));
-		System.out.println("Is: " + ((Math.log(n)) + (Math.log(n) * n) / 2));
-		return 0;
+		return (long) (n + Math.log(n) / Math.log(2) + 1);
 	}
 	
 	/**
@@ -98,21 +96,20 @@ public class Q3 {
 
 	/** Launch the experiment. */
 	public static void main(String[] args) {
-//		System.out.println("    N          Value");
-//		for (int n = 2; n <= 4096; n *= 2) {
-//			int counter = 0;
-//			int[] a = new int[n];
-//			for (int i = 0; i < n; i++) { a[i] = i; }
-//
-//			// initiate the request on an array of size n, containing values from 0 to n-1
-//			// using indices of lo=0 and hi=n-1
-//
-////			A is a array that contains the number of number in order of n aka n = 4 a = [0,1,2,3]
-//
-//			long val = proc(a, 0, n-1);
-//
-//			System.out.println(String.format("%6d\t%12d", n, val));
-//		}
-		model(5);
+		System.out.println("    N          Value");
+		for (int n = 2; n <= 4096; n *= 2) {
+			int counter = 0;
+			int[] a = new int[n];
+			for (int i = 0; i < n; i++) { a[i] = i; }
+
+			// initiate the request on an array of size n, containing values from 0 to n-1
+			// using indices of lo=0 and hi=n-1
+
+//			A is a array that contains the number of number in order of n aka n = 4 a = [0,1,2,3]
+
+			long val = proc(a, 0, n-1);
+
+			System.out.println(String.format("%6d\t%12d", n, val));
+		}
 	}
 }
