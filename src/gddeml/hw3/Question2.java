@@ -1,6 +1,7 @@
 package gddeml.hw3;
 
 import edu.princeton.cs.algs4.SeparateChainingHashST;
+import edu.princeton.cs.algs4.SequentialSearchST;
 
 import java.util.LinkedList;
 
@@ -139,11 +140,36 @@ public class Question2 {
 		for (int n = 1; n < aCollect.size() + 1; n++) {
 			System.out.print(String.format("%4d,", aCollect.get(n) + 1));
 		}
-		System.out.println("\n");
-//		System.out.println("#HT    ");
-//		for (Integer i : hashSTCounter) {
-//			System.out.print(String.format("%4d,", i));
-//		}
+//		System.out.println("\n");
+
+		SeparateChainingHashST<Integer, Integer> hCollect = new SeparateChainingHashST<>();
+		int SSsize;
+		for (SequentialSearchST SS : hashST.st) {
+			SSsize = SS.size();
+			if (!hCollect.contains(SSsize)) {
+				hCollect.put(SSsize, 0);
+			} else {
+				hCollect.put(SSsize, hCollect.get(SSsize) + 1);
+			}
+
+		}
+		SeparateChainingHashST<Integer, Integer> hCollectMarged = new SeparateChainingHashST<>();
+		int totalCountAtHeight;
+		for (int i = 0; i < hCollect.size(); i++) {
+			totalCountAtHeight = 0;
+			if (hCollect.get(i) != null) {
+				for (int n = i; n < hCollect.size(); n++) {
+					totalCountAtHeight += hCollect.get(n) + 1;
+				}
+			}
+			hCollectMarged.put(i, totalCountAtHeight);
+		}
+
+		System.out.print("\n#HT  ");
+		for (int n = 1; n < hCollectMarged.size(); n++) {
+			System.out.print(String.format("%4d,", hCollectMarged.get(n)));
+		}
+		System.out.println();
 		
 		// now output a row for each of the #BST, #AVL, #HT
 		
