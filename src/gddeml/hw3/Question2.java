@@ -130,14 +130,16 @@ public class Question2 {
 		}
 
 		SeparateChainingHashST<Integer, Integer> bCollect = b.collect();
-		System.out.print("\n#BST ");
-		for (int n = 1; n < bCollect.size(); n++) {
+		System.out.print("\n#BST");
+		for (int n = 1; n < bCollect.size() + 1; n++) {
 			System.out.print(String.format("%4d,", bCollect.get(n) + 1));
 		}
-//		System.out.println("#AVL    ");
-//		for (Integer i : AVLCounter) {
-//			System.out.print(String.format("%4d,", b.collect().get(i)));
-//		}
+		SeparateChainingHashST<Integer, Integer> aCollect = avl.collect();
+		System.out.print("\n#AVL");
+		for (int n = 1; n < aCollect.size() + 1; n++) {
+			System.out.print(String.format("%4d,", aCollect.get(n) + 1));
+		}
+		System.out.println("\n");
 //		System.out.println("#HT    ");
 //		for (Integer i : hashSTCounter) {
 //			System.out.print(String.format("%4d,", i));
@@ -146,8 +148,6 @@ public class Question2 {
 		// now output a row for each of the #BST, #AVL, #HT
 		
 		System.out.println("AVG. BST Depth: ...");
-
-		System.out.println();
 		System.out.println("AVG. AVL Depth: ...");
 		System.out.println("AVG. HT Depth: ...");
 		

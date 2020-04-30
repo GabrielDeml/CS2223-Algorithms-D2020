@@ -239,33 +239,37 @@ public class AVL {
      * Returns a edu.princeton.cs.algs4.SeparateChainingHashST object representing the symbol table.
      */
 
-//    I just make the keeping track of the Hash easier.
-    private SeparateChainingHashST<Integer, Integer> returnHash = new SeparateChainingHashST<>();
-
     public SeparateChainingHashST<Integer, Integer> collect() {
+//        I just start the stuff and don't actually matter :'(
 
-        iAmTheHelperButIDoAllOfTheWork(root);
-
+//        SeparateChainingHashST<Integer, Integer> returnHash = ;
 //        Don't listen to the dude under me I actually return something. So take that...
-        return returnHash;
+        return iAmTheHelperButIDoAllOfTheWork(root, 0, new SeparateChainingHashST<>());
     }
 
-	/**
-	 * Yeah you saw my function name I do all the recursion work the one above me is lazy and not worth anything
-	 * @param node root node
-	 */
-	private void iAmTheHelperButIDoAllOfTheWork(Node node) {
+    /**
+     * Yeah you saw my function name I do all the recursion work the one above me is lazy and not worth anything
+     *
+     * @param node   root node
+     * @param height We made our own because this node doesn't have them like the AVL trees. I am so jelly
+     */
+    private SeparateChainingHashST<Integer, Integer> iAmTheHelperButIDoAllOfTheWork(Node node, int height, SeparateChainingHashST<Integer, Integer> returnHash) {
 //    	Hey TAs whats up?
 //		It is so unfair me being a helper function has to do all of the work...
 //		But to be fair... I have a proper java doc so people can see what I do :)
-        if(!returnHash.contains(node.height)){
-            returnHash.put(node.height, 1);
-        }else{
-            returnHash.put(node.height, returnHash.get(node.height) + 1);
+        height++;
+        if (node.right != null) {
+            returnHash = iAmTheHelperButIDoAllOfTheWork(node.right, height, returnHash);
         }
-        iAmTheHelperButIDoAllOfTheWork(node.right);
-        iAmTheHelperButIDoAllOfTheWork(node.left);
+        if (node.left != null) {
+            returnHash = iAmTheHelperButIDoAllOfTheWork(node.left, height, returnHash);
+        }
+
+        if (!returnHash.contains(height)) {
+            returnHash.put(height, 0);
+        } else {
+            returnHash.put(height, returnHash.get(height) + 1);
+        }
+        return returnHash;
     }
-
-
 }
