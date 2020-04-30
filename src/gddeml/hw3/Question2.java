@@ -172,10 +172,28 @@ public class Question2 {
 		System.out.println();
 		
 		// now output a row for each of the #BST, #AVL, #HT
+		int bTotaln = 0;
+		int bTotal = 0;
+		for (int n = 1; n < bCollect.size() + 1; n++) {
+			bTotaln += n*(bCollect.get(n) + 1);
+			bTotal += bCollect.get(n) + 1;
+		}
+		int aTotaln = 0;
+		int aTotal = 0;
+		for (int n = 1; n < aCollect.size() + 1; n++) {
+			aTotaln += n*(aCollect.get(n) + 1);
+			aTotal += aCollect.get(n) + 1;
+		}
+		int hTotaln = 0;
+		int hTotal = 0;
+		for (int n = 1; n < hCollectMarged.size(); n++) {
+			hTotaln += n*(hCollectMarged.get(n));
+			hTotal += hCollectMarged.get(n);
+		}
 		
-		System.out.println("AVG. BST Depth: ...");
-		System.out.println("AVG. AVL Depth: ...");
-		System.out.println("AVG. HT Depth: ...");
+		System.out.println("AVG. BST Depth: " + (double) bTotaln / bTotal);
+		System.out.println("AVG. AVL Depth: " + (double) aTotaln / aTotal);
+		System.out.println("AVG. HT Depth: "  + (double) hTotaln / hTotal);
 		
 	}
 }
