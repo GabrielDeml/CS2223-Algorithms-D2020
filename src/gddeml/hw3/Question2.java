@@ -1,8 +1,8 @@
 package gddeml.hw3;
 
-import algs.hw3.AVL;
-import algs.hw3.BST;
-import algs.hw3.InstrumentedSeparateChainingHashST;
+import edu.princeton.cs.algs4.SeparateChainingHashST;
+
+import java.util.LinkedList;
 
 /**
 
@@ -86,6 +86,38 @@ public class Question2 {
 		// of 10,650 unique keys in each of these symbol tables, and the Integer counts would be the 
 		// frequency of occurrence.
 		// FILL IN HERE...
+		LinkedList<Integer> BSTCounter = new LinkedList<>();
+		LinkedList<Integer> AVLCounter = new LinkedList<>();
+		LinkedList<Integer> hashSTCounter = new LinkedList<>();
+		for (int i = 1; i < 46; i++) {
+			int key = 0;
+			TaleOfTwoCitiesExtractor totce = new TaleOfTwoCitiesExtractor(i);
+			for (String s : totce) {
+//				BST
+				if (b.get(s) != null) {
+					b.put(s, b.get(s) + 1);
+				} else {
+					b.put(s, 0);
+				}
+//				BSTCounter.add(b.height(b.root));
+
+//				AVL
+				if (avl.get(s) != null) {
+					avl.put(s, avl.get(s) + 1);
+				} else {
+					avl.put(s, 0);
+				}
+//				AVLCounter.add(avl.root.height);
+
+//				hashST
+				if (hashST.get(s) != null) {
+					hashST.put(s, hashST.get(s) + 1);
+				} else {
+					hashST.put(s, 0);
+				}
+//				hashSTCounter.add(hashST.n);
+			}
+		}
 		
 		System.out.println("There are " + b.size() + " unique words.");
 		System.out.println("The Height of the BST is " + b.height());
@@ -96,11 +128,26 @@ public class Question2 {
 		for (int n = 1; n <= 30; n++) {
 			System.out.print(String.format("%4d,", n));
 		}
-		System.out.println();
+
+		SeparateChainingHashST<Integer, Integer> bCollect = b.collect();
+		System.out.print("\n#BST ");
+		for (int n = 1; n < bCollect.size(); n++) {
+			System.out.print(String.format("%4d,", bCollect.get(n) + 1));
+		}
+//		System.out.println("#AVL    ");
+//		for (Integer i : AVLCounter) {
+//			System.out.print(String.format("%4d,", b.collect().get(i)));
+//		}
+//		System.out.println("#HT    ");
+//		for (Integer i : hashSTCounter) {
+//			System.out.print(String.format("%4d,", i));
+//		}
 		
 		// now output a row for each of the #BST, #AVL, #HT
 		
 		System.out.println("AVG. BST Depth: ...");
+
+		System.out.println();
 		System.out.println("AVG. AVL Depth: ...");
 		System.out.println("AVG. HT Depth: ...");
 		
