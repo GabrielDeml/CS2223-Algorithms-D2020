@@ -274,14 +274,14 @@ public class BST {
 
     private int hiIAmProperRecursionNotTheFakeStuffAboveMe(Node node, int count) {
         if (node.left != null) {
-            hiIAmProperRecursionNotTheFakeStuffAboveMe(node.left, count);
-        }
-        if (node.right != null) {
-            hiIAmProperRecursionNotTheFakeStuffAboveMe(node.right, count);
+            count = hiIAmProperRecursionNotTheFakeStuffAboveMe(node.left, count);
         }
         if (node.count == 1) {
-            System.out.println("The " + node.count + " " + node.key);
+            System.out.println(node.key);
             count++;
+        }
+        if (node.right != null) {
+            count = hiIAmProperRecursionNotTheFakeStuffAboveMe(node.right, count);
         }
         return count;
     }

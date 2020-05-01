@@ -28,9 +28,19 @@ public class Question3 {
 			System.out.println(mostF);
 			bt.delete(mostF);
 		}
-		
-//		int n = bt.printUnique();
-//		System.out.println(n + " unique words.");
+		System.out.println("\n\nNumber of words that appear once");
+		BST bt2 = new BST();
+		for (int i = 1; i < 46; i++) {
+			TaleOfTwoCitiesExtractor totce = new TaleOfTwoCitiesExtractor(i);
+			for (String s : totce) {
+				if (bt2.get(s) != null) {
+					bt2.put(s, bt2.get(s) + 1);
+				} else {
+					bt2.put(s, 1);
+				}
+			}
+		}
+		System.out.println("Number of unique words " + bt2.printUnique());
 		 
 	}
 	
