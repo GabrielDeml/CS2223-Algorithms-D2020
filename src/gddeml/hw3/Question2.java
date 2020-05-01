@@ -179,8 +179,6 @@ public class Question2 {
             hTotal += hCollectMarged.get(n);
         }
 
-        System.out.println(bTotal);
-        System.out.println(bTotaln);
         System.out.println("AVG. BST Depth: " + (double) bTotaln / bTotal);
         System.out.println("AVG. AVL Depth: " + (double) aTotaln / aTotal);
         System.out.println("AVG. HT Depth: " + (double) hTotaln / hTotal);

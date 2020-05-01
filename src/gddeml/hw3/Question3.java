@@ -41,7 +41,6 @@ public class Question3 {
             }
         }
         System.out.println("Number of unique words " + bt2.printUnique());
-
     }
 
 }
