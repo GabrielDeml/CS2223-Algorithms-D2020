@@ -206,7 +206,7 @@ public class BST {
         }
 
         if (!returnHash.contains(height)) {
-            returnHash.put(height, 0);
+            returnHash.put(height, 1);
         } else {
             returnHash.put(height, returnHash.get(height) + 1);
         }
@@ -217,7 +217,7 @@ public class BST {
      * Returns the height of this binary tree.
      */
     public int height() {
-        return height(root);
+        return height(root) - 1;
     }
 
 

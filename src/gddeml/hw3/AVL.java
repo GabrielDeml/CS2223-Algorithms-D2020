@@ -266,7 +266,7 @@ public class AVL {
         }
 
         if (!returnHash.contains(height)) {
-            returnHash.put(height, 0);
+            returnHash.put(height, 1);
         } else {
             returnHash.put(height, returnHash.get(height) + 1);
         }
