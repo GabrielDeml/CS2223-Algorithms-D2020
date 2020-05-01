@@ -2,9 +2,6 @@ package gddeml.hw3;
 
 import edu.princeton.cs.algs4.StdRandom;
 
-import java.util.LinkedList;
-import java.util.List;
-
 /**
  * This is the template code for question 1.
  *

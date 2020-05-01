@@ -1,5 +1,8 @@
-<<Your Name Here>>
+Gabriel Deml
 HW3
 Written Questions
 
-Q1. 
+Q1.
+Yes the empirical results support that proposition.
+
+The max compares are never more than 2N and the max exchanges are never more than N.
