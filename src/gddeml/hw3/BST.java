@@ -182,9 +182,7 @@ public class BST {
      * Returns a edu.princeton.cs.algs4.SeparateChainingHashST object representing the symbol table.
      */
     public SeparateChainingHashST<Integer, Integer> collect() {
-//        I just start the stuff and don't actually matter :'(
 
-//        SeparateChainingHashST<Integer, Integer> returnHash = ;
 //        Don't listen to the dude under me I actually return something. So take that...
         return iAmTheHelperButIDoAllOfTheWork(root, 0, new SeparateChainingHashST<>());
     }

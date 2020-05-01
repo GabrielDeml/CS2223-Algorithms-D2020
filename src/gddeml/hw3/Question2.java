@@ -140,7 +140,6 @@ public class Question2 {
 		for (int n = 1; n < aCollect.size() + 1; n++) {
 			System.out.print(String.format("%4d,", aCollect.get(n) + 1));
 		}
-//		System.out.println("\n");
 
 		SeparateChainingHashST<Integer, Integer> hCollect = new SeparateChainingHashST<>();
 		int SSsize;
