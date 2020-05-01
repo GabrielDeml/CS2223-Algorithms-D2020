@@ -246,27 +246,23 @@ public class BST {
      */
 //    private SeparateChainingHashST<Integer, Integer> returnHash2 = new SeparateChainingHashST<>();
 
-    private int biggestInt = 0;
-    private String stringToGoWithBiggestInt = "";
-
     public String mostFrequent() {
-        this.biggestInt = 0;
-        this.stringToGoWithBiggestInt = "";
-        iAmTheOtherHelperButIDoAllOfTheOtherWork(root);
-        return stringToGoWithBiggestInt;
+
+        return iAmTheOtherHelperButIDoAllOfTheOtherWork(root, "");
     }
 
-    private void iAmTheOtherHelperButIDoAllOfTheOtherWork(Node node) {
+    private String iAmTheOtherHelperButIDoAllOfTheOtherWork(Node node, String keyStart) {
+        String key = keyStart;
         if (node.left != null) {
-            iAmTheOtherHelperButIDoAllOfTheOtherWork(node.left);
+            key = iAmTheOtherHelperButIDoAllOfTheOtherWork(node.left, key);
         }
         if (node.right != null) {
-            iAmTheOtherHelperButIDoAllOfTheOtherWork(node.right);
+            key = iAmTheOtherHelperButIDoAllOfTheOtherWork(node.right, key);
         }
-        if (node.count >= biggestInt) {
-            stringToGoWithBiggestInt = node.key;
-            biggestInt = node.count;
+        if ((get(key) != null || !key.equals("")) && (get(key) != null && get(key) > get(node.key))) {
+            return key;
         }
+        return node.key;
     }
 
     /**
